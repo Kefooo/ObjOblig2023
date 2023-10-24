@@ -2,13 +2,15 @@ package com.example.objoblig2023.shape;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class Text extends Shape {
     private final String text;
-
-    public Text(double startX, double startY, Color fillColor, Color strokeColor, String text) {
+    private final int fontSize;
+    public Text(double startX, double startY, Color fillColor, Color strokeColor, String text, int fontSize) {
         super("Text", startX, startY, fillColor, strokeColor);
         this.text = text;
+        this.fontSize = fontSize;
     }
 
     @Override
@@ -16,6 +18,7 @@ public class Text extends Shape {
         gc.setStroke(getStrokeColor());
         gc.setFill(getFillColor());
         gc.setLineWidth(5);
+        gc.setFont(new Font("Arial", fontSize));
         gc.strokeText(text, getX(), getY());
         gc.fillText(text, getX(), getY());
     }

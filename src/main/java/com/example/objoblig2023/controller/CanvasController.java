@@ -32,6 +32,7 @@ public class CanvasController {
     private LinkedList<Shape> shapes = new LinkedList<>();
     private boolean isMoveToFrontMode;
     private boolean isMoveToBackMode;
+    private final ComboBox<String> fontSizes;
     String savedText = "";
     public CanvasController(Canvas canvas,
                             Button moveToFrontButton,
@@ -42,7 +43,8 @@ public class CanvasController {
                             ColorPicker fillColor,
                             GraphicsContext gc,
                             ChoiceBox<String> choiceBox,
-                            TextArea textArea
+                            TextArea textArea,
+                            ComboBox<String> fontSizes
                           ){
         this.canvas = canvas;
         this.moveToFrontButton = moveToFrontButton;
@@ -54,6 +56,7 @@ public class CanvasController {
         this.choiceBox = choiceBox;
         this.textArea = textArea;
         this.stop = stop;
+        this.fontSizes = fontSizes;
     }
 
     public EventHandler<MouseEvent> mouseClick(){
@@ -72,6 +75,21 @@ public class CanvasController {
      return mouseClick;
     }
 
+    /**
+     *
+     * Metode til å bytte størrelse på tekst
+     * @return modifisert ComboBox objekt
+     */
+    public ComboBox<String>changeFontSize(){
+        fontSizes.getItems().addAll("8", "10", "12", "14", "16", "18", "20");
+        fontSizes.setEditable(true);// Allow custom input
+        fontSizes.setValue("12"); // Set a default size
+        return fontSizes;
+    }
+
+    /**
+     * @return
+     */
     public EventHandler<MouseEvent> mouseDragged(){
 
         EventHandler<MouseEvent> mouseDragged = e -> {
@@ -98,6 +116,9 @@ public class CanvasController {
     }
 
 
+    /**
+     * @return
+     */
     public EventHandler<MouseEvent> mouseReleased() {
 
         EventHandler<MouseEvent> mouseReleased = e -> {
@@ -118,9 +139,18 @@ public class CanvasController {
                         break;
                     case "Tekst":
                         // Legg til en ny tekstfigur
-
-                        String text = createText(startX, startY , endX, endY );
-                        shapes.add(new Text(startX, startY, strokeColorPicker.getValue(), fillColorPicker.getValue(), text));
+                        try {
+                            int fontSize = Integer.parseInt(fontSizes.getValue());
+                            if(fontSize> 50){
+                                fontSize = 12;
+                            }else if(fontSize<2){
+                                fontSize = 12;
+                            }
+                            String text = createText(startX, startY, endX, endY);
+                            shapes.add(new Text(startX, startY, strokeColorPicker.getValue(), fillColorPicker.getValue(), text, fontSize));
+                        }catch (NumberFormatException ex){
+                            System.out.println("Må være tall: " + ex.getMessage());
+                        }
                         break;
                 }
             }

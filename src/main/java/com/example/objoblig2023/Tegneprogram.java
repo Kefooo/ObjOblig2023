@@ -40,7 +40,7 @@ public class Tegneprogram extends Application {
         Button moveToFrontButton = new Button("Flytt til forgrunnen");
         Button moveToBackButton = new Button("Flytt til bakgrunnen");
         Button stop = new Button("Ikke flytt");
-
+        ComboBox<String> fontSizes =   new ComboBox<>();
         CanvasController controller = new CanvasController(
                 canvas,
                 moveToFrontButton,
@@ -51,7 +51,8 @@ public class Tegneprogram extends Application {
                 fillColorPicker,
                 gc,
                 choiceBox,
-                textArea
+                textArea,
+                fontSizes
         );
 
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, controller.mouseClick());
@@ -63,7 +64,8 @@ public class Tegneprogram extends Application {
         moveToBackButton = controller.moveToBack();
         moveToFrontButton = controller.moveToFront();
         stop = controller.stop();
-        controls.getChildren().addAll(choiceBox, fillColorPicker, strokeColorPicker, detailsLabel, moveToFrontButton, moveToBackButton, stop, textArea);
+        fontSizes = controller.changeFontSize();
+        controls.getChildren().addAll(choiceBox, fillColorPicker, strokeColorPicker, detailsLabel, moveToFrontButton, moveToBackButton, stop, textArea, fontSizes);
         BorderPane layout = new BorderPane();
         layout.setRight(controls); // Flytter kontrollene til høyre side
         layout.setCenter(canvas); // Setter tegneflaten i midten
