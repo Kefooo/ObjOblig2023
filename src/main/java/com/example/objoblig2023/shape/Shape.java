@@ -5,18 +5,18 @@ import javafx.scene.paint.Color;
 
 public abstract class Shape {
     protected double startX, startY;
-    protected Color strokeColor;
     protected Color fillColor;
+    protected Color strokeColor;
     protected String shape; // Legg til denne linjen
 
     protected long lastMoved; // Legg til denne linjen
 
-    public Shape(String shape, double startX, double startY, Color strokeColor, Color fillColor) {
+    public Shape(String shape, double startX, double startY, Color fillColor, Color strokeColor) {
         this.shape = shape;
         this.startX = startX;
         this.startY = startY;
-        this.strokeColor = strokeColor;
         this.fillColor = fillColor;
+        this.strokeColor = strokeColor;
         this.lastMoved = System.currentTimeMillis();
     }
 
@@ -36,13 +36,12 @@ public abstract class Shape {
         return startY;
     }
 
+    public Color getFillColor() {
+        return fillColor;
+    }
     public Color getStrokeColor() {
         return strokeColor;
     }
-    public Color getFillColor() {
-        return strokeColor;
-    }
-
     public abstract void draw(GraphicsContext gc);
 
     public abstract boolean contains(double x, double y);

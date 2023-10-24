@@ -12,13 +12,12 @@ public class Line extends Shape {
         this.endX = endX;
         this.endY = endY;
     }
-
     @Override
     public void draw(GraphicsContext gc) {
         gc.beginPath();
         gc.setStroke(getStrokeColor());
-        gc.setFill(fillColor);
-        gc.setLineWidth(20);
+        gc.setFill(getFillColor());
+        gc.setLineWidth(30);
         gc.strokeLine(getX(), getY(), endX, endY);
         gc.closePath();
     }

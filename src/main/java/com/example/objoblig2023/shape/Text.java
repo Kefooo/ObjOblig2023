@@ -6,15 +6,18 @@ import javafx.scene.paint.Color;
 public class Text extends Shape {
     private final String text;
 
-    public Text(double startX, double startY, Color strokeColor, Color fillColor, String text) {
-        super("Text", startX, startY, strokeColor,fillColor); // Oppdater super() for 책 inkludere "Text"
+    public Text(double startX, double startY, Color fillColor, Color strokeColor, String text) {
+        super("Text", startX, startY, fillColor, strokeColor);
         this.text = text;
     }
 
     @Override
     public void draw(GraphicsContext gc) {
         gc.setStroke(getStrokeColor());
+        gc.setFill(getFillColor());
+        gc.setLineWidth(5);
         gc.strokeText(text, getX(), getY());
+        gc.fillText(text, getX(), getY());
     }
 
     @Override
@@ -22,12 +25,12 @@ public class Text extends Shape {
         // Sjekk om punktet (x, y) er innenfor en viss avstand fra startpunktet til teksten
         double dx = x - getX();
         double dy = y - getY();
-        return dx * dx + dy * dy <= 1000; // Endre dette tallet for 책 justere "valgomr책det" for teksten
+        return dx * dx + dy * dy <= 1000;
     }
 
 
     @Override
     public String toString() {
-        return "Tekst: '" + text + "' p책 (" + getX() + ", " + getY() + ") med farge " + getStrokeColor();
+        return "Tekst: '" + text + getX() + ", " + getY() + ") med farge " + getStrokeColor();
     }
 }

@@ -24,8 +24,8 @@ public class CanvasController {
     private final Button moveToFrontButton;
     private final Button moveToBackButton;
     private final Label detailsLabel;
-    private final ColorPicker strokeColorPicker;
     private final ColorPicker fillColorPicker;
+    private final ColorPicker strokeColorPicker;
     private final GraphicsContext gc;
     private final ChoiceBox<String> choiceBox;
     private Shape selectedShape = null;

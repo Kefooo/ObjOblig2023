@@ -37,8 +37,8 @@ public class Tegneprogram extends Application {
         choiceBox.getItems().addAll("Rett linje", "Rektangel", "Sirkel", "Tekst");
         choiceBox.setValue("Rett linje");
 
-        ColorPicker strokeColorPicker = new ColorPicker(Color.BLACK);
-        ColorPicker fillColorPicker = new ColorPicker(Color.TRANSPARENT);
+        ColorPicker fillColorPicker = new ColorPicker(Color.BLACK);
+        ColorPicker strokeColorPicker = new ColorPicker(Color.TRANSPARENT);
 
         Label detailsLabel = new Label();
 
@@ -64,7 +64,8 @@ public class Tegneprogram extends Application {
         VBox controls = new VBox(10);
         moveToBackButton = controller.moveToBack();
         moveToFrontButton = controller.moveToFront();
-        controls.getChildren().addAll(choiceBox, strokeColorPicker, fillColorPicker, detailsLabel, moveToFrontButton, moveToBackButton);
+        stop = controller.stop();
+        controls.getChildren().addAll(choiceBox, fillColorPicker, strokeColorPicker, detailsLabel, moveToFrontButton, moveToBackButton, stop, textArea);
         BorderPane layout = new BorderPane();
         layout.setRight(controls); // Flytter kontrollene til høyre side
         layout.setCenter(canvas); // Setter tegneflaten i midten
