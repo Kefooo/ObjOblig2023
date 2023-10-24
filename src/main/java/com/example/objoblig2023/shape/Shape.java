@@ -20,6 +20,14 @@ public abstract class Shape {
         this.lastMoved = System.currentTimeMillis();
     }
 
+    public void setFillColor(Color color){
+        this.fillColor = color;
+    }
+
+    public void setStrokeColor(Color color){
+        this.strokeColor = color;
+    }
+
     public long getLastMoved() {
         return lastMoved;
     }

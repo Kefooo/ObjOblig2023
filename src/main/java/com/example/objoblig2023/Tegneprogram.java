@@ -6,17 +6,12 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import java.util.Comparator;
-import java.util.LinkedList;
 
 
 public class Tegneprogram extends Application {
@@ -41,26 +36,29 @@ public class Tegneprogram extends Application {
         ColorPicker strokeColorPicker = new ColorPicker(Color.TRANSPARENT);
 
         Label detailsLabel = new Label();
-
+        TextArea textArea = new TextArea();
         Button moveToFrontButton = new Button("Flytt til forgrunnen");
         Button moveToBackButton = new Button("Flytt til bakgrunnen");
+        Button stop = new Button("Ikke flytt");
 
         CanvasController controller = new CanvasController(
                 canvas,
                 moveToFrontButton,
                 moveToBackButton,
+                stop,
                 detailsLabel,
                 strokeColorPicker,
                 fillColorPicker,
                 gc,
-                choiceBox
-
+                choiceBox,
+                textArea
         );
 
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, controller.mouseClick());
         canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, controller.mouseDragged());
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, controller.mouseReleased());
-        canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, controller.dragShape());
+        canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, controller::handleShapeClickAndMove);
+        //canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, controller.clickShape());
         VBox controls = new VBox(10);
         moveToBackButton = controller.moveToBack();
         moveToFrontButton = controller.moveToFront();
