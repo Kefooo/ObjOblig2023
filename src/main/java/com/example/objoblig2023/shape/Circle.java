@@ -13,9 +13,11 @@ public class Circle extends Shape {
 
     @Override
     public void draw(GraphicsContext gc) {
-        gc.fillOval(startX - radius, startY - radius, 2 * radius, 2 * radius);
-        gc.setStroke(getStrokeColor()); // Sett strekfargen
         gc.setFill(getFillColor());
+        gc.setStroke(getStrokeColor()); // Sett strekfargen
+        gc.setLineWidth(10);
+        gc.fillOval(startX - radius, startY - radius,  radius, radius);
+        gc.setLineWidth(10);
         gc.strokeOval(startX - radius, startY - radius, 2 * radius, 2 * radius); // Tegn kantlinjen
     }
 
