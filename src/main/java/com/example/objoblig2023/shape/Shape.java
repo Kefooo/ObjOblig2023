@@ -24,6 +24,10 @@ public abstract class Shape {
         return lastMoved;
     }
 
+    public void setLastMoved(Long millis){
+        this.lastMoved = millis;
+    }
+
     public double getX() {
         return startX;
     }
@@ -49,7 +53,9 @@ public abstract class Shape {
         lastMoved = System.currentTimeMillis(); // Oppdater nÃ¥r figuren sist ble flyttet
     }
 
-
+    public String getShape(){
+        return shape;
+    }
     public String toString() {
         return "Shape: " + shape + " at (" + String.format("%.2f", startX) + ", " + String.format("%.2f", startY) + ") with color " + strokeColor.toString();
     }

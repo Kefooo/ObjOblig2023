@@ -17,7 +17,8 @@ public class Line extends Shape {
     public void draw(GraphicsContext gc) {
         gc.beginPath();
         gc.setStroke(getStrokeColor());
-        gc.setFill(getFillColor());
+        gc.setFill(fillColor);
+        gc.setLineWidth(20);
         gc.strokeLine(getX(), getY(), endX, endY);
         gc.closePath();
     }

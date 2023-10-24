@@ -16,6 +16,7 @@ public class Rectangle extends Shape {
     public void draw(GraphicsContext gc) {
         gc.setFill(getFillColor());
         gc.setStroke(getStrokeColor());
+        gc.setLineWidth(20);
         gc.fillRect(startX, startY, width, height);
     }
     @Override
