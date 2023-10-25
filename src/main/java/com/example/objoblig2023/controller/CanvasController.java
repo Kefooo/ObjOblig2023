@@ -30,8 +30,6 @@ public class CanvasController {
     private final Button stop;
     private Shape selectedShape = null;
     private LinkedList<Shape> shapes = new LinkedList<>();
-    private boolean isMoveToFrontMode;
-    private boolean isMoveToBackMode;
     private final ComboBox<String> fontSizes;
     String savedText = "";
     public CanvasController(Canvas canvas,
@@ -128,7 +126,7 @@ public class CanvasController {
 
                 switch (choiceBox.getValue()) {
                     case "Rett linje":
-                        shapes.add(new Line(startX, startY, endX, endY, strokeColorPicker.getValue(), fillColorPicker.getValue()));
+                        shapes.add(new Line(startX, startY, endX, endY, fillColorPicker.getValue(), strokeColorPicker.getValue()));
                         break;
                     case "Rektangel":
                         shapes.add(new Rectangle(Math.min(startX, endX), Math.min(startY, endY), Math.abs(startX - endX), Math.abs(startY - endY), fillColorPicker.getValue(),strokeColorPicker.getValue()));
@@ -212,21 +210,6 @@ public Button moveToFront(){
 
     }
 
-//    public EventHandler<MouseEvent> dragShape() {
-//
-//        EventHandler<MouseEvent> mouseReleased = e -> {
-//            if(moveToBackMode) {
-//                shapes.sort(Comparator.comparing(Shape::getLastMoved).reversed());
-//            }else{
-//                shapes.sort(Comparator.comparing(Shape::getLastMoved));
-//            }
-//            for (Shape shape : shapes) {
-//                shape.draw(gc);
-//            }
-//        };
-//
-//        return mouseReleased;
-//    }
 public EventHandler<MouseEvent> dragShape() {
     EventHandler<MouseEvent> mouseReleased = e -> {
         if (moveToBackMode) {

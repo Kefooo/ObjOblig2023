@@ -47,6 +47,7 @@ public abstract class Shape {
     public Color getFillColor() {
         return fillColor;
     }
+
     public Color getStrokeColor() {
         return strokeColor;
     }
@@ -57,7 +58,7 @@ public abstract class Shape {
     public void move(double dx, double dy) {
         startX += dx;
         startY += dy;
-        lastMoved = System.currentTimeMillis(); // Oppdater nÃ¥r figuren sist ble flyttet
+        lastMoved = System.currentTimeMillis(); // Oppdater når figuren sist ble flyttet
     }
 
     public String getShape(){

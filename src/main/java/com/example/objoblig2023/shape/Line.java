@@ -7,18 +7,16 @@ public class Line extends Shape {
     private double endX;
     private double endY;
 
-    public Line(double startX, double startY, double endX, double endY, Color strokeColor, Color fillColor) {
-        super("Line", startX, startY, strokeColor, fillColor); // Oppdater super() for å inkludere "Line"
+    public Line(double startX, double startY, double endX, double endY, Color fillColor, Color strokeColor) {
+        super("Line", startX, startY, fillColor, strokeColor); // Oppdater super() for å inkludere "Line"
         this.endX = endX;
         this.endY = endY;
     }
     @Override
     public void draw(GraphicsContext gc) {
         gc.beginPath();
-        gc.setStroke(getStrokeColor());
-        gc.setFill(getFillColor());
-        gc.setLineWidth(30);
         gc.strokeLine(getX(), getY(), endX, endY);
+        gc.setLineWidth(1);
         gc.closePath();
     }
     @Override

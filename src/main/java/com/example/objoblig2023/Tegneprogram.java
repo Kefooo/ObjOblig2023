@@ -33,7 +33,7 @@ public class Tegneprogram extends Application {
         choiceBox.setValue("Rett linje");
 
         ColorPicker fillColorPicker = new ColorPicker(Color.BLACK);
-        ColorPicker strokeColorPicker = new ColorPicker(Color.TRANSPARENT);
+        ColorPicker strokeColorPicker = new ColorPicker(Color.RED);
 
         Label detailsLabel = new Label();
         TextArea textArea = new TextArea();
@@ -59,7 +59,7 @@ public class Tegneprogram extends Application {
         canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, controller.mouseDragged());
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, controller.mouseReleased());
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, controller::handleShapeClickAndMove);
-        //canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, controller.clickShape());
+
         VBox controls = new VBox(10);
         moveToBackButton = controller.moveToBack();
         moveToFrontButton = controller.moveToFront();
